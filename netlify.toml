@@ -1,0 +1,8 @@
+[[redirects]]
+  from = "/v4/*"
+  to = "https://api-ssl.bitly.com/v4/:splat"
+  status = 200
+  force = true
+[build]
+  publish = "dist/link-shortener-angular"
+  command = "ng build --prod"

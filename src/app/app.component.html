@@ -1,0 +1,35 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+<h1>Shorter link</h1>
+<form (ngSubmit)="onSubmit(formShorter)" [formGroup]="formShorter">
+  <label for="long-link">
+    <input
+      type="url"
+      placeholder="your URL here..."
+      [ngClass]="{invalid: formShorter.invalid}"
+      name="long-link"
+      formControlName="longLink"
+    />
+    <button mat-raised-button color="primary">Shorten</button>
+  </label>
+  <label>
+    <input
+      placeholder="your new url will be here.."
+      type="text"
+      name="short-link"
+      formControlName="shortLink"
+      #inputTarget
+    />
+    <button
+      (cbOnSuccess)="setCopied()"
+      [disabled]="!formShorter.get('shortLink')?.value"
+      type="button"
+      ngxClipboard
+      color="accent"
+      mat-raised-button
+      [cbContent]="inputTarget.value"
+    >
+      Copy
+    </button>
+  </label>
+</form>
